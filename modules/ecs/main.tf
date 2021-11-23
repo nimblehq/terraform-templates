@@ -1,5 +1,5 @@
 data "template_file" "main" {
-  template = file("${path.root}/../task_definitions/service.json.tpl")
+  template = var.task_definition_template
 
   vars = {
     namespace                     = var.namespace
@@ -101,10 +101,5 @@ resource "aws_ecs_service" "main" {
 
   tags = {
     Owner = var.owner
-  }
-
-  service_registries {
-    registry_arn =  var.aws_service_discovery_arn
-    container_name = var.namespace
   }
 }

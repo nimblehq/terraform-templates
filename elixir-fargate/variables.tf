@@ -1,6 +1,5 @@
 variable "app_name" {
-  description = "App Name"
-  default     = "codewar-web-staging"
+  description = "Application name"
 }
 
 variable "region" {
@@ -8,7 +7,7 @@ variable "region" {
 }
 
 variable "owner" {
-  default = "codewar-web"
+  default = "nimble"
 }
 
 variable "environment" {
@@ -20,15 +19,16 @@ variable "rds_instance_type" {
 }
 
 variable "rds_database_name" {
-  default = "codewarWeb"
+  description = "RDS database name"
+  default = "SampleElixirAppStagingDb"
 }
 
 variable "rds_username" {
-  default = "codewar_web_staging"
+  description = "RDS username"
 }
 
 variable "rds_password" {
-  default = "NIEzVjznMIvcDUol"
+  description = "RDS password"
 }
 
 variable "ecs_cpu" {
@@ -44,5 +44,5 @@ variable "ecs_desired_count" {
 }
 
 variable "aws_ssm_parameter_arn" {
-  default = "arn:aws:ssm:ap-southeast-1:301618631622:parameter/codewar-web/staging"
+  description = "Amazon SSM parameter store"
 }

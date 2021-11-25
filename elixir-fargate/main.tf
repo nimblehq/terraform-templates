@@ -75,6 +75,20 @@ module "ecr" {
   owner     = var.owner
 }
 
+module "ssm" {
+  source = "./modules/ssm"
+
+  namespace         = var.app_name
+  environment       = var.environment
+  
+  secret_key_base   = var.secret_key_base
+  
+  rds_username      = var.rds_username
+  rds_password      = var.rds_password
+  rds_endpoint      = module.db.db_instance_endpoint
+  rds_database_name = var.rds_database_name
+}
+
 module "ecs" {
   source = ".././modules/ecs"
 
@@ -88,10 +102,10 @@ module "ecs" {
   alb_target_group_arn          = module.alb.alb_target_group_arn
   aws_ecr_repository_url        = module.ecr.repository_url
   aws_cloudwatch_log_group_name = module.log.aws_cloudwatch_log_group_name
-  aws_ssm_parameter_arn         = var.aws_ssm_parameter_arn
   desired_count                 = var.ecs_desired_count
   cpu                           = var.ecs_cpu
   memory                        = var.ecs_memory
   owner                         = var.owner
   environment                   = var.environment
+  aws_parameter_store           = module.ssm.parameter_store
 }

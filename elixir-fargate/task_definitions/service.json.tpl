@@ -32,11 +32,11 @@
     "secrets": [
       {
         "name": "DATABASE_URL",
-        "valueFrom": "${aws_parameter_store}/DATABASE_URL"
+        "valueFrom": "${database_url_ssm_arn}"
       },
       {
         "name": "SECRET_KEY_BASE",
-        "valueFrom": "${aws_parameter_store}/SECRET_KEY_BASE"
+        "valueFrom": "${secret_base_ssm_arn}"
       }
     ]
   }

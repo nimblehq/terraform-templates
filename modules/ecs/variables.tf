@@ -23,10 +23,6 @@ variable "aws_ecr_repository_url" {
   description = "Amazon ECR repository URL"
 }
 
-variable "aws_ssm_parameter_arn" {
-  description = "Amazon SSM Parameter Store"
-}
-
 variable "subnets" {
   description = "Subnet where ECS placed"
   type        = list(any)
@@ -63,4 +59,9 @@ variable "owner" {
 
 variable "environment" {
   type = string
+}
+
+variable "aws_parameter_store" {
+  type = map
+  default = {}
 }

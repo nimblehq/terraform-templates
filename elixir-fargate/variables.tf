@@ -11,7 +11,7 @@ variable "owner" {
 }
 
 variable "environment" {
-  default = "staging"
+  description = "Application environment"
 }
 
 variable "rds_instance_type" {
@@ -20,7 +20,6 @@ variable "rds_instance_type" {
 
 variable "rds_database_name" {
   description = "RDS database name"
-  default = "SampleElixirAppStagingDb"
 }
 
 variable "rds_username" {
@@ -43,6 +42,6 @@ variable "ecs_desired_count" {
   default = 2
 }
 
-variable "aws_ssm_parameter_arn" {
-  description = "Amazon SSM parameter store"
+variable "secret_key_base" {
+  description = "Generate secret key base with mix phx.gen.secret"
 }

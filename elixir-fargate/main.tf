@@ -78,6 +78,7 @@ module "ecr" {
 module "ecs" {
   source = ".././modules/ecs"
 
+  task_definition_template      = file("task_definitions/service.json.tpl")
   subnets                       = module.vpc.private_subnet_ids
   namespace                     = var.app_name
   region                        = var.region
@@ -93,26 +94,4 @@ module "ecs" {
   memory                        = var.ecs_memory
   owner                         = var.owner
   environment                   = var.environment
-  aws_service_discovery_arn     = aws_service_discovery_service.service_discovery.arn
-}
-
-resource "aws_service_discovery_private_dns_namespace" dns_namespace {
-  name        = "${var.app_name}.local"
-  description = "AWS Service Discovery Private DNS Namespace"
-  vpc         = module.vpc.vpc_id
-}
-
-resource "aws_service_discovery_service" service_discovery {
-  name = var.app_name
-
-  dns_config {
-    namespace_id = aws_service_discovery_private_dns_namespace.dns_namespace.id
-
-    dns_records {
-      ttl  = 10
-      type = "A"
-    }
-
-    routing_policy = "MULTIVALUE"
-  }
 }

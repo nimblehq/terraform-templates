@@ -1,3 +1,8 @@
+variable "task_definition_template" {
+  description = "Task definition template file"
+  type = string
+}
+
 variable "namespace" {
   type = string
 }
@@ -58,8 +63,4 @@ variable "owner" {
 
 variable "environment" {
   type = string
-}
-
-variable "aws_service_discovery_arn" {
-  description = "AWS Service Discovery"
 }
